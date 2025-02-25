@@ -455,6 +455,10 @@ seq --format "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar %04g" 8000 9999 \
 : p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
 
 * BACKLOG Level 25 → Level 26
+#+BEGIN_SRC shell
+ssh -p 2220 -i bandit26.sshkey -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no bandit26@localhost showtext
+#+END_SRC
+
 * BACKLOG Level 26 → Level 27
 * BACKLOG Level 27 → Level 28
 * BACKLOG Level 28 → Level 29
